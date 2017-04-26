@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace FX.ORM
 {
-    public static class Result
+    public class Result
     {
         static MySqlConnection connect()
         {
@@ -60,7 +60,7 @@ namespace FX.ORM
             }
         }
 
-        public static IEnumerable<T> Select<T>(String where,params KeyValuePair<String,object>[] paras)
+        public IEnumerable<T> Select<T>(String where,params KeyValuePair<String,object>[] paras)
         {
 
             PropertyInfo[] Fields = typeof(T).GetProperties();

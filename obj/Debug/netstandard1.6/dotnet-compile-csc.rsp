@@ -8,8 +8,8 @@
 -debug:full
 -nostdlib
 -nologo
-"E:\MyTest\.Net Core\FX.Blog\FX.Blog\src\FX.ORM\obj\Debug\netstandard1.6\dotnet-compile.assemblyinfo.cs"
--out:"E:\MyTest\.Net Core\FX.Blog\FX.Blog\src\FX.ORM\bin\Debug\netstandard1.6\FX.ORM.dll"
+"E:\MyTest\FX\Blog\src\FX.ORM\obj\Debug\netstandard1.6\dotnet-compile.assemblyinfo.cs"
+-out:"E:\MyTest\FX\Blog\src\FX.ORM\bin\Debug\netstandard1.6\FX.ORM.dll"
 -r:"C:\Users\ww103\.nuget\packages\Google.Protobuf\3.0.0\lib\netstandard1.0\Google.Protobuf.dll"
 -r:"C:\Users\ww103\.nuget\packages\Microsoft.CSharp\4.0.1\ref\netstandard1.0\Microsoft.CSharp.dll"
 -r:"C:\Users\ww103\.nuget\packages\Microsoft.Extensions.Configuration\1.0.0\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll"
@@ -89,6 +89,7 @@
 -r:"C:\Users\ww103\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\ww103\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\ww103\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
-"E:\MyTest\.Net Core\FX.Blog\FX.Blog\src\FX.ORM\GetQuery.cs"
-"E:\MyTest\.Net Core\FX.Blog\FX.Blog\src\FX.ORM\Result.cs"
-"E:\MyTest\.Net Core\FX.Blog\FX.Blog\src\FX.ORM\Properties\AssemblyInfo.cs"
+"E:\MyTest\FX\Blog\src\FX.ORM\GetQuery.cs"
+"E:\MyTest\FX\Blog\src\FX.ORM\ORM.cs"
+"E:\MyTest\FX\Blog\src\FX.ORM\Result.cs"
+"E:\MyTest\FX\Blog\src\FX.ORM\Properties\AssemblyInfo.cs"
