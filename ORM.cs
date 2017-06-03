@@ -9,7 +9,7 @@ using System.Text;
 
 namespace FX.ORM
 {
-    public class ORM<T> where T:class
+    public partial class ORM<T> where T:class
     {
         MySqlConnection connect()
         {
@@ -65,6 +65,23 @@ namespace FX.ORM
         }
         #endregion
 
+        #region 不大于
+        /// <summary>
+        /// 不大于
+        /// 小于或等于
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="standard"></param>
+        /// <returns></returns>
+        public ORM<T> Ngt(String feild, Object standard)
+        {
+            String keyflag = feild + Paras.Count;
+            QueryStirng.Append(" " + feild + "<=@" + keyflag + " ");
+            Paras.Add(new MySqlParameter(keyflag, standard));
+            return this;
+        }
+        #endregion
+
         #region 小于
         /// <summary>
         /// 小于
@@ -78,6 +95,23 @@ namespace FX.ORM
         {
             String keyflag = feild + Paras.Count;
             QueryStirng.Append(" " + feild + "<@" + keyflag + " ");
+            Paras.Add(new MySqlParameter(keyflag, standard));
+            return this;
+        }
+        #endregion
+
+        #region 不小于 
+        /// <summary>
+        /// 不小于
+        /// 大于或等于
+        /// </summary>
+        /// <param name="feild"></param>
+        /// <param name="standard"></param>
+        /// <returns></returns>
+        public ORM<T> Nlt(String feild, Object standard)
+        {
+            String keyflag = feild + Paras.Count;
+            QueryStirng.Append(" " + feild + ">=@" + keyflag + " ");
             Paras.Add(new MySqlParameter(keyflag, standard));
             return this;
         }
@@ -120,6 +154,95 @@ namespace FX.ORM
         }
         #endregion
 
+        #region 以standard开始
+        /// <summary>
+        /// 以standard开始
+        /// 生成 like standard% sql 
+        /// </summary>
+        /// <param name="feild"></param>
+        /// <param name="standard"></param>
+        /// <returns></returns>
+        public ORM<T> StartWith(String feild, Object standard)
+        {
+            return this;
+        }
+        #endregion
+
+        #region 包含standard
+        /// <summary>
+        /// 包含standard
+        /// 生成 like %standard%
+        /// </summary>
+        /// <param name="feild"></param>
+        /// <param name="standard"></param>
+        /// <returns></returns>
+        public ORM<T> Content(String feild, Object standard)
+        {
+            return this;
+        }
+        #endregion
+
+        #region 以standard结束
+        /// <summary>
+        /// 以standard结束
+        /// 生成 like %standard
+        /// </summary>
+        /// <param name="feild"></param>
+        /// <param name="standard"></param>
+        /// <returns></returns>
+        public ORM<T> EndWith(String feild, Object standard)
+        {
+            return this;
+        }
+        #endregion
+
+        #region 添加条件
+        /// <summary>
+        /// 添加条件
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public ORM<T> ConditionAttach(params ORM.Arg[] args)
+        {
+            if (args == null || args.Count() < 1)
+                return this;
+            foreach (ORM.Arg arg in args)
+            {
+                switch (arg.Option)
+                {
+                    case SqlOption.Content:
+                        Content(arg.Field, arg.Stantard);
+                        break;
+                    case SqlOption.EndWith:
+                        EndWith(arg.Field, arg.Stantard);
+                        break;
+                    case SqlOption.Eq:
+                        Eq(arg.Field, arg.Stantard);
+                        break;
+                    case SqlOption.Gt:
+                        Gt(arg.Field, arg.Stantard);
+                        break;
+                    case SqlOption.Lt:
+                        Lt(arg.Field, arg.Stantard);
+                        break;
+                    case SqlOption.Neq:
+                        Neq(arg.Field, arg.Stantard);
+                        break;
+                    case SqlOption.Ngt:
+                        Ngt(arg.Field, arg.Stantard);
+                        break;
+                    case SqlOption.Nlt:
+                        Nlt(arg.Field, arg.Stantard);
+                        break;
+                    case SqlOption.StartWith:
+                        StartWith(arg.Field, arg.Stantard);
+                        break;
+                }
+            }
+
+            return this;
+        }
+        #endregion
 
         #region select
         /// <summary>
@@ -229,5 +352,6 @@ namespace FX.ORM
             }
         }
         #endregion
+
     }
 }

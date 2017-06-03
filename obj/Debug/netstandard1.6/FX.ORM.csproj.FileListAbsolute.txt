@@ -1,0 +1,8 @@
+E:\MyTest\FX\Blog\src\FX.ORM\bin\Debug\netstandard1.6\FX.ORM.deps.json
+E:\MyTest\FX\Blog\src\FX.ORM\bin\Debug\netstandard1.6\FX.ORM.dll
+E:\MyTest\FX\Blog\src\FX.ORM\bin\Debug\netstandard1.6\FX.ORM.pdb
+E:\MyTest\FX\Blog\src\FX.ORM\obj\Debug\netstandard1.6\FX.ORM.csproj.CoreCompileInputs.cache
+E:\MyTest\FX\Blog\src\FX.ORM\obj\Debug\netstandard1.6\FX.ORM.AssemblyInfo.cs
+E:\MyTest\FX\Blog\src\FX.ORM\obj\Debug\netstandard1.6\FX.ORM.dll
+E:\MyTest\FX\Blog\src\FX.ORM\obj\Debug\netstandard1.6\FX.ORM.pdb
+E:\MyTest\FX\Blog\src\FX.ORM\obj\Debug\netstandard1.6\FX.ORM.csprojResolveAssemblyReference.cache

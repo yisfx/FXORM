@@ -92,6 +92,6 @@
 --reference:C:\Users\ww103\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\ww103\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
 E:\MyTest\FX\Blog\src\FX.ORM\GetQuery.cs
+E:\MyTest\FX\Blog\src\FX.ORM\Join.cs
 E:\MyTest\FX\Blog\src\FX.ORM\ORM.cs
-E:\MyTest\FX\Blog\src\FX.ORM\Result.cs
 E:\MyTest\FX\Blog\src\FX.ORM\Properties\AssemblyInfo.cs
