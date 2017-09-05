@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Common;
 using System.Linq;
 using System.Reflection;
@@ -41,8 +42,9 @@ namespace FX.ORM
             {
                 QueryStirng.Append(" " + filed.Name + ",");
             }
+            QueryStirng.Append(",");
             QueryStirng.Append(" from " + TableName + " where 1=1 ");
-            String temp=QueryStirng.ToString().Replace(", from", " from");
+            String temp=QueryStirng.ToString().Replace(",,", " ");
             QueryStirng = new StringBuilder();
             QueryStirng.Append(temp);
         }
@@ -59,7 +61,7 @@ namespace FX.ORM
         public ORM<T> Gt(String feild, object standard)
         {
             String keyflag = feild + Paras.Count;
-            QueryStirng.Append(" " + feild + ">@" + keyflag + " ");
+            QueryStirng.Append(" and " + feild + ">@" + keyflag + " ");
             Paras.Add(new MySqlParameter(keyflag, standard));
             return this;
         }
@@ -76,7 +78,7 @@ namespace FX.ORM
         public ORM<T> Ngt(String feild, Object standard)
         {
             String keyflag = feild + Paras.Count;
-            QueryStirng.Append(" " + feild + "<=@" + keyflag + " ");
+            QueryStirng.Append(" and " + feild + "<=@" + keyflag + " ");
             Paras.Add(new MySqlParameter(keyflag, standard));
             return this;
         }
@@ -94,7 +96,7 @@ namespace FX.ORM
         public ORM<T> Lt(String feild, object standard)
         {
             String keyflag = feild + Paras.Count;
-            QueryStirng.Append(" " + feild + "<@" + keyflag + " ");
+            QueryStirng.Append(" and " + feild + "<@" + keyflag + " ");
             Paras.Add(new MySqlParameter(keyflag, standard));
             return this;
         }
@@ -111,7 +113,7 @@ namespace FX.ORM
         public ORM<T> Nlt(String feild, Object standard)
         {
             String keyflag = feild + Paras.Count;
-            QueryStirng.Append(" " + feild + ">=@" + keyflag + " ");
+            QueryStirng.Append(" and " + feild + ">=@" + keyflag + " ");
             Paras.Add(new MySqlParameter(keyflag, standard));
             return this;
         }
@@ -129,7 +131,7 @@ namespace FX.ORM
         public ORM<T> Eq(String feild, object standard)
         {
             String keyflag = feild + Paras.Count;
-            QueryStirng.Append(" " + feild + "=@" + keyflag + " ");
+            QueryStirng.Append(" and " + feild + "=@" + keyflag + " ");
             Paras.Add(new MySqlParameter(keyflag, standard));
             return this;
         }
@@ -148,7 +150,7 @@ namespace FX.ORM
         public ORM<T> Neq(String feild, object standard)
         {
             String keyflag = feild + Paras.Count;
-            QueryStirng.Append(" " + feild + "<>@" + keyflag + " ");
+            QueryStirng.Append(" and " + feild + "<>@" + keyflag + " ");
             Paras.Add(new MySqlParameter(keyflag, standard));
             return this;
         }
@@ -164,6 +166,7 @@ namespace FX.ORM
         /// <returns></returns>
         public ORM<T> StartWith(String feild, Object standard)
         {
+            QueryStirng.Append(" and " + feild + "like '"+ standard + "%' ");
             return this;
         }
         #endregion
@@ -178,6 +181,7 @@ namespace FX.ORM
         /// <returns></returns>
         public ORM<T> Content(String feild, Object standard)
         {
+            QueryStirng.Append(" and " + feild + "like '%" + standard + "%' ");
             return this;
         }
         #endregion
@@ -192,6 +196,7 @@ namespace FX.ORM
         /// <returns></returns>
         public ORM<T> EndWith(String feild, Object standard)
         {
+            QueryStirng.Append(" and " + feild + "like '%" + standard + "' ");
             return this;
         }
         #endregion
@@ -272,10 +277,14 @@ namespace FX.ORM
                             {
                                 if (reader[Field.Name] == DBNull.Value)
                                 {
-                                    Field.SetValue(model, null);
+                                    Field.SetValue(model, null, null);
                                 }
                                 else
-                                    Field.SetValue(model, reader[Field.Name]);
+                                {
+                                    var type =Type.GetType(Field.PropertyType.FullName);
+                                    var value = Helper.ConvertHelper.Convert(reader[Field.Name], type);
+                                    Field.SetValue(model, value, null);
+                                }
                             }
                             yield return model;
                         }

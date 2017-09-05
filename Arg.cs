@@ -6,6 +6,20 @@ namespace FX.ORM
 {
     public class Arg
     {
+
+        /// <summary>
+        /// 参数
+        /// </summary>
+        /// <param name="field">字段</param>
+        /// <param name="option">查询类型</param>
+        /// <param name="value">值</param>
+        public Arg(String field,SqlOption option,Object value)
+        {
+            this.Option = option;
+            this.Stantard = value;
+            this.Field = field;
+        }
+
         /// <summary>
         /// 条件字段
         /// </summary>
